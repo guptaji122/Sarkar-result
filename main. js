@@ -1,0 +1,17 @@
+// main.js
+
+const productGrid = document.getElementById('product-grid');
+
+products.forEach(product => {
+    const card = document.createElement('div');
+    card.classList.add('product-card');
+    card.innerHTML = `
+        <img src="${product.image}" alt="${product.title}">
+        <h3>${product.title}</h3>
+        <p>$${product.price}</p>
+        <a href="${product.link}">
+            <button>View Product</button>
+        </a>
+    `;
+    productGrid.appendChild(card);
+});
