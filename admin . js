@@ -1,0 +1,42 @@
+// admin.js
+
+const productList = document.getElementById('admin-product-list');
+const form = document.getElementById('product-form');
+
+// Show existing products
+function displayProducts() {
+    productList.innerHTML = '';
+    products.forEach((product, index) => {
+        productList.innerHTML += `
+            <div class="product-card">
+                <img src="${product.image}" alt="${product.title}">
+                <h3>${product.title}</h3>
+                <p>$${product.price}</p>
+                <button onclick="deleteProduct(${index})">Delete</button>
+            </div>
+        `;
+    });
+}
+
+// Add new product
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const newProduct = {
+        id: products.length + 1,
+        title: document.getElementById('title').value,
+        price: parseFloat(document.getElementById('price').value),
+        image: document.getElementById('image').value,
+        link: document.getElementById('link').value
+    };
+    products.push(newProduct);
+    alert('Product added! Reload page to see.');
+    console.log(products); // You'll need to save this manually to products.js for now
+});
+
+// Delete product
+function deleteProduct(index) {
+    products.splice(index, 1);
+    displayProducts();
+}
+
+displayProducts();
